@@ -45,4 +45,3 @@ class Topping : public Decorator {
   public:
 	Topping(Pizza* base, std::string name);
 };
-
