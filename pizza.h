@@ -1,4 +1,11 @@
 #include <iostream>
+#include <vector>
+#include <string>
+
+const std::vector<std::string> toppingList = {
+	"Anchovies", "Avocado", "Bacon", "Basil", "Black Olives", "Chicken", "Extra Cheese", "Garlic", "Goat Cheese", "Green Olives", "Ham", "Mushroom",
+	"Onion", "Pepperoni", "Peppers", "Pineapple", "Prosciutto", "Salami", "Sausage", "Spinach", "Sun-dried Tomatoes"
+};
 
 class Pizza { // This is our Pizza superclass that is pure virtual
   protected:
@@ -30,6 +37,11 @@ class Decorator : public Pizza { // This, to, is a pure virtual superclass for P
     virtual ~Decorator() = 0;
 };
 
+class GlutenFree : public Decorator {
+  public:
+	GlutenFree(Pizza* base);
+};
+
 class ThinCrust : public Decorator {
   public:
 	ThinCrust(Pizza* base);
@@ -44,4 +56,10 @@ class Topping : public Decorator {
 	std::string name;
   public:
 	Topping(Pizza* base, std::string name);
+};
+
+class Cheese : public Decorator {
+	std::string type;
+  public:
+	Topping(Pizza* base, std::string type);
 };
