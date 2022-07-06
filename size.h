@@ -1,14 +1,16 @@
 #ifndef __SIZE_H__
 #define __SIZE_H__
 
+#include <vector>
+#include <string>
+
 class Pizza;
 
-std::vector<std::string> sizes = {
-    "Small", "Medium", "Large", "X-Large"
-};
 
 class PizzaSize {
   public:
+
+    static const std::vector<std::string> possibleSizes;
     virtual Pizza* createPizza() = 0;
 };
 
@@ -28,6 +30,11 @@ class largePizza : public PizzaSize {
 };
 
 class xLargePizza : public PizzaSize {
+  public:
+    Pizza* createPizza() override;
+};
+
+class partyPizza : public PizzaSize {
   public:
     Pizza* createPizza() override;
 };

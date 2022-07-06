@@ -17,6 +17,8 @@ const std::vector<std::string> toppingList = {
 	"Onion", "Pepperoni", "Peppers", "Pineapple", "Prosciutto", "Salami", "Sausage", "Spinach", "Sun-dried Tomatoes"
 };
 */
+//extern const std::map<std::string, float> addOns;
+//extern const std::vector<std::string> toppingList;
 
 class Pizza { // This is our Pizza superclass that is pure virtual
   protected:
@@ -24,16 +26,19 @@ class Pizza { // This is our Pizza superclass that is pure virtual
 	const std::string description;
   public:
 
-	const std::map<std::string, float> addOns = {
+  static const std::map<std::string, float> addOns;
+  static const std::vector<std::string> toppingList;
+/*
+	static const std::map<std::string, float> addOns = {
 		{"Stuffed Crust", 2.99}, {"Thin Crust", 1.00},
 		{"Gluten-Free", 2.29}, {"Vegan Cheese", 1.99}
 	};
 
-	const std::vector<std::string> toppingList = {
+	static const std::vector<std::string> toppingList = {
 		"Anchovies", "Avocado", "Bacon", "Basil", "Black Olives", "Chicken", "Extra Cheese", "Garlic", "Goat Cheese", "Green Olives", "Ham", "Mushroom",
 		"Onion", "Pepperoni", "Peppers", "Pineapple", "Prosciutto", "Salami", "Sausage", "Spinach", "Sun-dried Tomatoes"
 	};
-
+*/
 	Pizza(float price, std::string description);
 	virtual float getPrice() const = 0;
 	virtual std::string getDescription() const = 0;

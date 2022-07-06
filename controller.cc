@@ -11,7 +11,7 @@ Controller::Controller(std::istream& in, std::ostream& out) :
     in{in}, out{out}, view{} {}
 
 void Controller::displayMenu() {
-    out << "Here is our menu:" << endl;
+    out << "Here is our menu:" << endl << endl;
 
     view.displayOptions(out);
 }

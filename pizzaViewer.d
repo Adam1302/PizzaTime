@@ -1,1 +1,1 @@
-pizzaViewer.o: pizzaViewer.cc pizzaViewer.h pizza.h
+pizzaViewer.o: pizzaViewer.cc pizzaViewer.h pizza.h size.h
