@@ -1,3 +1,6 @@
+#ifndef __SIZE_H__
+#define __SIZE_H__
+
 class Pizza;
 
 std::vector<std::string> sizes = {
@@ -28,3 +31,5 @@ class xLargePizza : public PizzaSize {
   public:
     Pizza* createPizza() override;
 };
+
+#endif

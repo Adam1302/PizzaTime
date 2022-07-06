@@ -36,12 +36,12 @@ string Decorator::getDescription() const {
 }
 Decorator::~Decorator() { delete base; }
 
-GlutenFree::GlutenFree(Pizza* base) : Decorator{2.29, " that is gluten-free", base} {}
+GlutenFree::GlutenFree(Pizza* base) : Decorator{addOns.at("Gluten-Free"), " that is gluten-free", base} {}
 
-VeganCheese::VeganCheese(Pizza* base) : Decorator{1.99, " made with vegan cheese (soy-based)", base} {}
+VeganCheese::VeganCheese(Pizza* base) : Decorator{addOns.at("Vegan Cheese"), " made with vegan cheese (soy-based)", base} {}
 
-ThinCrust::ThinCrust(Pizza* base) : Decorator{1.00, " with thin crust", base} {}
+ThinCrust::ThinCrust(Pizza* base) : Decorator{addOns.at("Thin Crust"), " with thin crust", base} {}
 
-CheesyCrust::CheesyCrust(Pizza* base) : Decorator{2.99, " with stuffed crust", base} {}
+CheesyCrust::CheesyCrust(Pizza* base) : Decorator{addOns.at("Cheesy Crust"), " with stuffed crust", base} {}
 
 Topping::Topping(Pizza* base, string name) : Decorator{0.75, " with" + name, base}, name{name} {}

@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=c++14 -MMD
-OBJECTS = controller.o main.o pizza.o
+OBJECTS = controller.o main.o pizza.o pizzaViewer.o size.o
 DEPENDS = ${OBJECTS:.o=.d}
 EXEC = pizzaTime
 
