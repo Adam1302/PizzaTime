@@ -22,12 +22,12 @@ class Pizza { // This is our Pizza superclass that is pure virtual
 // Maybe make factory method for this (small, medium, large)
 class PlainPizza : public Pizza { // A plain pizza which we can build off (i.e., which we can 'decorate')
   public:
-	PlainPizza();
+	PlainPizza(float price);
 	float getPrice() const override;
 	std::string getDescription() const override;
 };
 
-class Decorator : public Pizza { // This, to, is a pure virtual superclass for Pizza with toppings
+class Decorator : public Pizza { // This, too, is a pure virtual superclass for Pizza with toppings
   protected:
 	Pizza* base; // Our pizza will function as a linked list
   public:
@@ -56,10 +56,4 @@ class Topping : public Decorator {
 	std::string name;
   public:
 	Topping(Pizza* base, std::string name);
-};
-
-class Cheese : public Decorator {
-	std::string type;
-  public:
-	Topping(Pizza* base, std::string type);
 };
