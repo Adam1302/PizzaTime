@@ -75,6 +75,7 @@ set<char> Controller::getAddOns() {
     out << "When you are finished entering add ons, enter '0'." << endl;
 
     set<char> addOnsSelected;
+    out << "Enter the number corresponding to your desired topping: ";
 
     while (in >> c) {
         c = toupper(c);
@@ -84,6 +85,7 @@ set<char> Controller::getAddOns() {
         } else if (c == '0') {
             break;
         }
+        out << "Enter the number corresponding to your desired topping: ";
     }
     return addOnsSelected;
 }
@@ -94,7 +96,7 @@ void Controller::displayMenu() {
     view.displayOptions(out);
 }
 
-void Controller::takeOrder() {
+Pizza* Controller::takePizzaOrder() {
     char size = getSize();
     set<int> toppings = getToppings();
     set<char> extras = getAddOns();
@@ -106,6 +108,6 @@ void Controller::payBill() {
 void Controller::run() {
     out << "Hi! This is PizzaTime, a pizza pop-up shop celebrating the summer." << endl;
     // displayMenu();
-    takeOrder();
+    takePizzaOrder();
     payBill();
 }

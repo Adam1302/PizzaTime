@@ -18,7 +18,7 @@ class Controller {
 	std::set<int> getToppings();
 	std::set<char> getAddOns();
 	void displayMenu();
-	void takeOrder();
+	Pizza* takePizzaOrder();
 	void payBill();
 	void run();
 };
