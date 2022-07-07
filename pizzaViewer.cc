@@ -18,18 +18,25 @@ void PizzaViewer::displayToppings(ostream& out) {
 }
 
 void PizzaViewer::displaySizes(std::ostream& out) {
+    vector<char> sizeAbbs = {'S', 'M', 'L', 'X', 'P'};
+    int i = 0;
     out << "Here are the sizes you can choose from:" << endl;
     for (auto& size : PizzaSize::possibleSizes) {
-        out << "\t" << "- " << size << endl;
+        out << "\t" << "- " << size << " (" << sizeAbbs[i] << ")" << endl;
+        ++i;
     }
     out << endl;
 }
 
 void PizzaViewer::displayAddOns(ostream& out) {
+    vector<char> sizeAbbs = {'G', 'S', 'T', 'V'};
+    int i = 0;
+
     out << "Add-ons and Extras:" << endl;
     
     for (auto& m : Pizza::addOns) {
-        out << "\t" << left << std::setw(20) << m.first << m.second << endl;
+        out << "\t(" << sizeAbbs[i] << ") " << left << std::setw(20) << m.first << m.second << endl;
+        ++i;
     }
     out << endl;
 }

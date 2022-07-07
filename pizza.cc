@@ -2,10 +2,16 @@
 
 using namespace std;
 
-const std::map<std::string, float> Pizza::addOns = {
+const map<string, float> Pizza::addOns = {
 		{"Stuffed Crust", 2.99}, {"Thin Crust", 0.99},
 		{"Gluten-Free", 2.29}, {"Vegan Cheese", 1.99}
 	};
+
+
+const map<char, string> Pizza::addOnMap = {
+	{'S', "Stuffed Crust"}, {'T', "Thin Crust"},
+	{'G', "Gluten-Free"}, {'V', "Vegan Cheese"}
+};
 
 const std::vector<std::string> Pizza::toppingList = {
 	"Anchovies", "Avocado", "Bacon", "Basil", "Black Olives", "Chicken", "Extra Cheese", "Garlic", "Goat Cheese", "Green Olives", "Ham", "Mushroom",

@@ -28,6 +28,7 @@ class Pizza { // This is our Pizza superclass that is pure virtual
 
   static const std::map<std::string, float> addOns;
   static const std::vector<std::string> toppingList;
+  static const std::map<char, std::string> addOnMap;
 /*
 	static const std::map<std::string, float> addOns = {
 		{"Stuffed Crust", 2.99}, {"Thin Crust", 1.00},

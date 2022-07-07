@@ -3,6 +3,7 @@
 
 //#include <iostream>
 #include <memory>
+#include <set>
 
 #include "pizzaViewer.h"
 
@@ -13,6 +14,9 @@ class Controller {
 	PizzaViewer view;
   public:
 	Controller(std::istream& in, std::ostream& out);
+	char getSize();
+	std::set<int> getToppings();
+	std::set<char> getAddOns();
 	void displayMenu();
 	void takeOrder();
 	void payBill();
