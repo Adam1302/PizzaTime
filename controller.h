@@ -21,7 +21,7 @@ class Controller {
 	Pizza* getAddOns(Pizza* p);
 	void displayMenu();
 	Pizza* takePizzaOrder();
-	void payBill();
+	void payBill(Pizza* p);
 	void run();
 };
 

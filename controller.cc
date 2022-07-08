@@ -4,6 +4,7 @@
 #include "size.h"
 #include "pizzaViewer.h"
 #include <cctype>
+#include <iomanip>
 
 using namespace std;
 
@@ -115,6 +116,19 @@ Pizza* Controller::getAddOns(Pizza* p) {
         }
         out << "Enter the number corresponding to your desired topping: ";
     }
+
+    for (auto c : addOnsSelected) {
+        if (c == 'G') {
+            p = new GlutenFree(p);
+        } else if (c == 'S') {
+            p = new StuffedCrust(p);
+        } else if (c == 'T') {
+            p = new ThinCrust(p);
+        } else {
+            p = new VeganCheese(p);
+        }
+    }
+
     return p;
 }
 
@@ -129,13 +143,32 @@ Pizza* Controller::takePizzaOrder() {
     p = getToppings(p);
     p = getAddOns(p);
 
-    out << endl << "Your order: " << p->getDescription() << endl << endl;
+    out << endl << "Your order: " << endl << "\t" << p->getDescription() << endl << endl;
 
     return p;
 }
     
-void Controller::payBill() {
-    out << "Pending implementation." << endl;
+void Controller::payBill(Pizza* p) {
+    float price = p->getPrice();
+    out << "Your total price is: " << endl;
+    out << "\t$" << fixed << setprecision(2) << price << endl;
+/*
+    out << endl << "Ontario Tax Rate is 13%: $" << fixed << setprecision(2) << curPrice*0.13 << endl;
+	curPrice *= 1.13;
+
+	out << "Total Price: $" << fixed << setprecision(2) << curPrice << endl << endl;
+
+	out << "Enter your tip percentage: (in %)";
+	in >> tipPercentage;
+
+	out << "Tip is " << tipPercentage << "%: $" << curPrice*tipPercentage/100 << endl;
+
+	curPrice *= (1 + tipPercentage/100);
+
+	out << "Total Price: $" << fixed << setprecision(2) << curPrice << endl;
+
+	if (tipPercentage > 0) { out << "Thank you for the tip!" << endl; }
+    */
 }
 
 void Controller::run() {
@@ -147,5 +180,5 @@ void Controller::run() {
     //} while(...);
 
 
-    payBill();
+    payBill(p);
 }
