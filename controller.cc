@@ -149,26 +149,50 @@ Pizza* Controller::takePizzaOrder() {
 }
     
 void Controller::payBill(Pizza* p) {
+    float tipPercentage = 0;
     float price = p->getPrice();
+
+
     out << "Your total price is: " << endl;
     out << "\t$" << fixed << setprecision(2) << price << endl;
-/*
-    out << endl << "Ontario Tax Rate is 13%: $" << fixed << setprecision(2) << curPrice*0.13 << endl;
-	curPrice *= 1.13;
 
-	out << "Total Price: $" << fixed << setprecision(2) << curPrice << endl << endl;
+    out << endl << "Ontario Tax Rate is 13%: $" << fixed << setprecision(2) << price*0.13 << endl;
+	price *= 1.13;
 
-	out << "Enter your tip percentage: (in %)";
-	in >> tipPercentage;
+	out << "Total Price: $" << fixed << setprecision(2) << price << endl << endl;
 
-	out << "Tip is " << tipPercentage << "%: $" << curPrice*tipPercentage/100 << endl;
+	
 
-	curPrice *= (1 + tipPercentage/100);
+	while (true) {
+			try {
+				out << "Enter your tip percentage (in %): ";
+				in >> tipPercentage;
+				if (in.fail()) {
+					throw 1;
+				} else if (tipPercentage < 0) {
+					throw 2;
+				} else {
+					break;
+				}
+			} catch (int err) {
+				if (err == 1) {
+					out << "You must enter a number. Try again." << endl;
+					cin.clear();
+					cin.ignore(10000, '\n');
+				} else {
+					out << "You must enter a positive number. Try again." << endl;
+				}
+			}
+		}
 
-	out << "Total Price: $" << fixed << setprecision(2) << curPrice << endl;
+	out << "Tip is " << tipPercentage << "%: $" << price*tipPercentage/100 << endl;
+
+	price *= (1 + tipPercentage/100);
+
+	out << "Total Price: $" << fixed << setprecision(2) << price << endl;
 
 	if (tipPercentage > 0) { out << "Thank you for the tip!" << endl; }
-    */
+    
 }
 
 void Controller::run() {
