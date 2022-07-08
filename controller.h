@@ -7,6 +7,8 @@
 
 #include "pizzaViewer.h"
 
+class Pizza;
+
 class Controller {
 	std::istream& in;
 	std::ostream& out;

@@ -100,7 +100,52 @@ Pizza* Controller::takePizzaOrder() {
     char size = getSize();
     set<int> toppings = getToppings();
     set<char> extras = getAddOns();
+
+    
+
+    Pizza* p = NULL;
+
+    // Getting the size
+    if (size == 'S') {
+        PizzaSize* s = new smallPizza;
+        p = s->createPizza();
+    } else if (size == 'M') {
+        PizzaSize* s = new mediumPizza;
+        p = s->createPizza();
+    } else if (size == 'L') {
+        PizzaSize* s = new largePizza;
+        p = s->createPizza();
+    } else if (size == 'X') {
+        PizzaSize* s = new xLargePizza;
+        p = s->createPizza();
+    } else {
+        PizzaSize* s = new partyPizza;
+        p = s->createPizza();
+    }
+
+    // Getting the toppings
+    for (auto i : toppings) {
+        p = new Topping(p, Pizza::toppingList[i - 1]);
+    }
+
+    // Getting the add-ons
+    for (auto c : extras) {
+        if (c == 'G') {
+            p = new GlutenFree(p);
+        } else if (c == 'S') {
+            p = new StuffedCrust(p);
+        } else if (c == 'T') {
+            p = new ThinCrust(p);
+        } else {
+            p = new VeganCheese(p);
+        }
+    }
+
+    out << endl << "Your order: " << p->getDescription() << endl << endl;
+
+    return p;
 }
+    
 void Controller::payBill() {
     out << "Pending implementation." << endl;
 }
@@ -108,6 +153,6 @@ void Controller::payBill() {
 void Controller::run() {
     out << "Hi! This is PizzaTime, a pizza pop-up shop celebrating the summer." << endl;
     // displayMenu();
-    takePizzaOrder();
+    Pizza* p = takePizzaOrder();
     payBill();
 }

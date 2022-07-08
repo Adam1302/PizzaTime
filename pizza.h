@@ -81,9 +81,9 @@ class ThinCrust : public Decorator {
 	ThinCrust(Pizza* base);
 };
 
-class CheesyCrust : public Decorator {
+class StuffedCrust : public Decorator {
   public:
-    CheesyCrust(Pizza* base);
+    StuffedCrust(Pizza* base);
 };
 
 class Topping : public Decorator {

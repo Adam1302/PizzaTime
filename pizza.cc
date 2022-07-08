@@ -33,7 +33,7 @@ string Topping::description = " with " + name;
 Pizza::Pizza(float price, string description) : price{price}, description{description} {}
 Pizza::~Pizza() {}
 
-PlainPizza::PlainPizza(float price, string size) : Pizza{price, size + " Pizza"} {}
+PlainPizza::PlainPizza(float price, string size) : Pizza{price, size + " Pizza:"} {}
 float PlainPizza::getPrice() const {
     return price;
 }
@@ -47,16 +47,16 @@ float Decorator::getPrice() const {
     return base->getPrice() + price;
 }
 string Decorator::getDescription() const {
-    return base->getDescription() + description;
+    return base->getDescription() + " (" + description + ")";
 }
 Decorator::~Decorator() { delete base; }
 
-GlutenFree::GlutenFree(Pizza* base) : Decorator{addOns.at("Gluten-Free"), " that is gluten-free", base} {}
+GlutenFree::GlutenFree(Pizza* base) : Decorator{addOns.at("Gluten-Free"), "Gluten-free", base} {}
 
-VeganCheese::VeganCheese(Pizza* base) : Decorator{addOns.at("Vegan Cheese"), " made with vegan cheese (soy-based)", base} {}
+VeganCheese::VeganCheese(Pizza* base) : Decorator{addOns.at("Vegan Cheese"), "Vegan Cheese (soy)", base} {}
 
-ThinCrust::ThinCrust(Pizza* base) : Decorator{addOns.at("Thin Crust"), " with thin crust", base} {}
+ThinCrust::ThinCrust(Pizza* base) : Decorator{addOns.at("Thin Crust"), "Thin Crust", base} {}
 
-CheesyCrust::CheesyCrust(Pizza* base) : Decorator{addOns.at("Cheesy Crust"), " with stuffed crust", base} {}
+StuffedCrust::StuffedCrust(Pizza* base) : Decorator{addOns.at("Stuffed Crust"), "Stuffed Crust", base} {}
 
-Topping::Topping(Pizza* base, string name) : Decorator{0.75, " with" + name, base}, name{name} {}
+Topping::Topping(Pizza* base, string name) : Decorator{0.75, name, base}, name{name} {}
