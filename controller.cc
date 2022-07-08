@@ -11,7 +11,7 @@ Controller::Controller(std::istream& in, std::ostream& out) :
     //in{in}, out{out}, view{new PizzaViewer()} {}
     in{in}, out{out}, view{} {}
 
-char Controller::getSize() {
+Pizza* Controller::getSize() {
     char c;
 
     view.displaySizes(out);
@@ -21,11 +21,33 @@ char Controller::getSize() {
         c = toupper(c);
         if (c == 'S' || c == 'M' || c == 'L' || c == 'X' || c == 'P') break;
     }
-    return c;
+    
+
+    Pizza* p = NULL;
+
+    // Getting the size
+    if (c == 'S') {
+        PizzaSize* s = new smallPizza;
+        p = s->createPizza();
+    } else if (c == 'M') {
+        PizzaSize* s = new mediumPizza;
+        p = s->createPizza();
+    } else if (c == 'L') {
+        PizzaSize* s = new largePizza;
+        p = s->createPizza();
+    } else if (c == 'X') {
+        PizzaSize* s = new xLargePizza;
+        p = s->createPizza();
+    } else {
+        PizzaSize* s = new partyPizza;
+        p = s->createPizza();
+    }
+
+    return p;
 }
 
 
-std::set<int> Controller::getToppings() {
+Pizza* Controller::getToppings(Pizza* p) {
     int i;
 
     view.displayToppings(out);
@@ -64,10 +86,16 @@ std::set<int> Controller::getToppings() {
         toppings.insert(i);
     }
     out << endl << endl;
-    return toppings;
+
+    // Getting the toppings
+    for (auto i : toppings) {
+        p = new Topping(p, Pizza::toppingList[i - 1]);
+    }
+
+    return p;
 }
 
-set<char> Controller::getAddOns() {
+Pizza* Controller::getAddOns(Pizza* p) {
     char c;
 
     view.displayAddOns(out);
@@ -87,7 +115,7 @@ set<char> Controller::getAddOns() {
         }
         out << "Enter the number corresponding to your desired topping: ";
     }
-    return addOnsSelected;
+    return p;
 }
 
 void Controller::displayMenu() {
@@ -97,49 +125,9 @@ void Controller::displayMenu() {
 }
 
 Pizza* Controller::takePizzaOrder() {
-    char size = getSize();
-    set<int> toppings = getToppings();
-    set<char> extras = getAddOns();
-
-    
-
-    Pizza* p = NULL;
-
-    // Getting the size
-    if (size == 'S') {
-        PizzaSize* s = new smallPizza;
-        p = s->createPizza();
-    } else if (size == 'M') {
-        PizzaSize* s = new mediumPizza;
-        p = s->createPizza();
-    } else if (size == 'L') {
-        PizzaSize* s = new largePizza;
-        p = s->createPizza();
-    } else if (size == 'X') {
-        PizzaSize* s = new xLargePizza;
-        p = s->createPizza();
-    } else {
-        PizzaSize* s = new partyPizza;
-        p = s->createPizza();
-    }
-
-    // Getting the toppings
-    for (auto i : toppings) {
-        p = new Topping(p, Pizza::toppingList[i - 1]);
-    }
-
-    // Getting the add-ons
-    for (auto c : extras) {
-        if (c == 'G') {
-            p = new GlutenFree(p);
-        } else if (c == 'S') {
-            p = new StuffedCrust(p);
-        } else if (c == 'T') {
-            p = new ThinCrust(p);
-        } else {
-            p = new VeganCheese(p);
-        }
-    }
+    Pizza* p = getSize();
+    p = getToppings(p);
+    p = getAddOns(p);
 
     out << endl << "Your order: " << p->getDescription() << endl << endl;
 
@@ -153,6 +141,11 @@ void Controller::payBill() {
 void Controller::run() {
     out << "Hi! This is PizzaTime, a pizza pop-up shop celebrating the summer." << endl;
     // displayMenu();
-    Pizza* p = takePizzaOrder();
+    Pizza* p = NULL;
+    //do {
+        p = takePizzaOrder();
+    //} while(...);
+
+
     payBill();
 }

@@ -16,9 +16,9 @@ class Controller {
 	PizzaViewer view;
   public:
 	Controller(std::istream& in, std::ostream& out);
-	char getSize();
-	std::set<int> getToppings();
-	std::set<char> getAddOns();
+	Pizza* getSize();
+	Pizza* getToppings(Pizza* p);
+	Pizza* getAddOns(Pizza* p);
 	void displayMenu();
 	Pizza* takePizzaOrder();
 	void payBill();
