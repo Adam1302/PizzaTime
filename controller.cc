@@ -223,7 +223,7 @@ bool another(istream& in, ostream&out) {
 
 void Controller::run() {
     out << "Hi! This is PizzaTime, a pizza pop-up shop celebrating the summer." << endl;
-    // displayMenu();
+    
     vector<Pizza*> order;
     Pizza* p = NULL;
 
