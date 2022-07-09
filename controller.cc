@@ -143,24 +143,30 @@ Pizza* Controller::takePizzaOrder() {
     p = getToppings(p);
     p = getAddOns(p);
 
-    out << endl << "Your order: " << endl << "\t" << p->getDescription() << endl << endl;
+    out << endl << "Your order: " << endl << "  " << p->getRepresentation() << endl << endl;
 
     return p;
 }
     
-void Controller::payBill(Pizza* p) {
+void Controller::payBill(vector<Pizza*> order) {
     float tipPercentage = 0;
-    float price = p->getPrice();
+    float totalPrice = 0;
+    float price;
 
-    out << p->getRepresentation() << endl;
+    out << "Your order:" << endl;
 
+    for (auto p : order) {
+        price = p->getPrice();
+        totalPrice += price;
+        out << p->getRepresentation() << endl;
+    }
+        
+    out << "Your total price is: $" << fixed << setprecision(2) << totalPrice << endl;
 
-    out << "Your total price is: $" << fixed << setprecision(2) << price << endl;
+    out << endl << "Ontario Tax Rate is 13%: $" << fixed << setprecision(2) << totalPrice*0.13 << endl;
+	totalPrice *= 1.13;
 
-    out << endl << "Ontario Tax Rate is 13%: $" << fixed << setprecision(2) << price*0.13 << endl;
-	price *= 1.13;
-
-	out << "Total Price: $" << fixed << setprecision(2) << price << endl << endl;
+	out << "Total Price: $" << fixed << setprecision(2) << totalPrice << endl << endl;
 
 	while (true) {
 			try {
@@ -184,21 +190,47 @@ void Controller::payBill(Pizza* p) {
 			}
 		}
 
-	out << "Tip is " << tipPercentage << "%: $" << price*tipPercentage/100 << endl;
-
-	price *= (1 + tipPercentage/100);
-
-	out << "Total Price: $" << fixed << setprecision(2) << price << endl;
-
+	out << "Tip is " << tipPercentage << "%: $" << totalPrice*tipPercentage/100 << endl << endl;
 	if (tipPercentage > 0) { out << "Thank you for the tip!" << endl; }
+
+	totalPrice *= (1 + tipPercentage/100);
+
+	out << "Total Price: $" << fixed << setprecision(2) << totalPrice << endl;
+}
+
+bool another(istream& in, ostream&out) {
+    bool anotherOne = false;
+    char c;
+
+    while (true) {
+        out << "Would you like to order another? ('Y'/'N'): ";
+        in >> c;
+        c = toupper(c);
+        if (c == 'Y') {
+            anotherOne = true;
+            break;
+        } else if (c == 'N') {
+            break;
+        } else {
+            out << "Invalid input. ";
+			cin.clear();
+			cin.ignore(10000, '\n');
+        }
+    }
+    out << endl;
+    return anotherOne;
 }
 
 void Controller::run() {
     out << "Hi! This is PizzaTime, a pizza pop-up shop celebrating the summer." << endl;
     // displayMenu();
+    vector<Pizza*> order;
     Pizza* p = NULL;
-    
-    p = takePizzaOrder();
 
-    payBill(p);
+    do {
+        p = takePizzaOrder();
+        order.emplace_back(p);
+    } while (another(in, out));
+
+    payBill(order);
 }
