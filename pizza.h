@@ -6,20 +6,6 @@
 #include <string>
 #include <map>
 
-/*
-const std::map<std::string, float> addOns = {
-	{"Stuffed Crust", 2.99}, {"Thin Crust", 1.00},
-	{"Gluten-Free", 2.29}, {"Vegan Cheese", 1.99}
-};
-
-const std::vector<std::string> toppingList = {
-	"Anchovies", "Avocado", "Bacon", "Basil", "Black Olives", "Chicken", "Extra Cheese", "Garlic", "Goat Cheese", "Green Olives", "Ham", "Mushroom",
-	"Onion", "Pepperoni", "Peppers", "Pineapple", "Prosciutto", "Salami", "Sausage", "Spinach", "Sun-dried Tomatoes"
-};
-*/
-//extern const std::map<std::string, float> addOns;
-//extern const std::vector<std::string> toppingList;
-
 class Pizza { // This is our Pizza superclass that is pure virtual
   protected:
 	const float price;
@@ -29,17 +15,7 @@ class Pizza { // This is our Pizza superclass that is pure virtual
   static const std::map<std::string, float> addOns;
   static const std::vector<std::string> toppingList;
   static const std::map<char, std::string> addOnMap;
-/*
-	static const std::map<std::string, float> addOns = {
-		{"Stuffed Crust", 2.99}, {"Thin Crust", 1.00},
-		{"Gluten-Free", 2.29}, {"Vegan Cheese", 1.99}
-	};
 
-	static const std::vector<std::string> toppingList = {
-		"Anchovies", "Avocado", "Bacon", "Basil", "Black Olives", "Chicken", "Extra Cheese", "Garlic", "Goat Cheese", "Green Olives", "Ham", "Mushroom",
-		"Onion", "Pepperoni", "Peppers", "Pineapple", "Prosciutto", "Salami", "Sausage", "Spinach", "Sun-dried Tomatoes"
-	};
-*/
 	Pizza(float price, std::string description);
 	virtual float getPrice() const = 0;
 	virtual std::string getDescription() const = 0;
@@ -48,7 +24,6 @@ class Pizza { // This is our Pizza superclass that is pure virtual
 };
 
 
-// Maybe make factory method for this (small, medium, large)
 class PlainPizza : public Pizza { // A plain pizza which we can build off (i.e., which we can 'decorate')
   public:
 	PlainPizza(float price, std::string size);

@@ -3,13 +3,13 @@
 #include "pizza.h"
 #include "size.h"
 #include "pizzaViewer.h"
+#include <set>
 #include <cctype>
 #include <iomanip>
 
 using namespace std;
 
 Controller::Controller(std::istream& in, std::ostream& out) :
-    //in{in}, out{out}, view{new PizzaViewer()} {}
     in{in}, out{out}, view{} {}
 
 Pizza* Controller::getSize() {

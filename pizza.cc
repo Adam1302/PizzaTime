@@ -21,17 +21,6 @@ const std::vector<std::string> Pizza::toppingList = {
 	"Onion", "Pepperoni", "Peppers", "Pineapple", "Prosciutto", "Salami", "Sausage", "Spinach", "Sun-dried Tomatoes"
 };
 
-/*
-float PlainPizza::Pizza::price = 8.99; // If this doesn't work, make constructors
-string PlainPizza::description = "Cheese Pizza";
-float ThinCrust::price = 1.00; // If this doesn't work, make constructors
-string ThinCrust::description = " with thin crust";
-float CheesyCrust::price = 2.99; // If this doesn't work, make constructors
-string CheesyCrust::description = " with stuffed crust";
-float Topping::price = 8.99; // If this doesn't work, make constructors
-string Topping::description = " with " + name;
-*/
-
 
 Pizza::Pizza(float price, string description) : price{price}, description{description} {}
 Pizza::~Pizza() {}
