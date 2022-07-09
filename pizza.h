@@ -18,7 +18,6 @@ class Pizza { // This is our Pizza superclass that is pure virtual
 
 	Pizza(float price, std::string description);
 	virtual float getPrice() const = 0;
-	virtual std::string getDescription() const = 0;
 	virtual std::string getRepresentation() const = 0;
 	virtual ~Pizza();
 };
@@ -28,7 +27,6 @@ class PlainPizza : public Pizza { // A plain pizza which we can build off (i.e.,
   public:
 	PlainPizza(float price, std::string size);
 	float getPrice() const override;
-	std::string getDescription() const override;
 	std::string getRepresentation() const override;
 };
 
@@ -38,7 +36,6 @@ class Decorator : public Pizza { // This, too, is a pure virtual superclass for 
   public:
 	Decorator (float price, std::string description, Pizza* base);
 	float getPrice() const override;
-    std::string getDescription() const override;
 	std::string getRepresentation() const override;
     virtual ~Decorator() = 0;
 };

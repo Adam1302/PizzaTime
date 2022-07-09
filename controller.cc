@@ -25,24 +25,27 @@ Pizza* Controller::getSize() {
     
 
     Pizza* p = NULL;
+    PizzaSize* s = NULL;
 
     // Getting the size
     if (c == 'S') {
-        PizzaSize* s = new smallPizza;
+        s = new smallPizza;
         p = s->createPizza();
     } else if (c == 'M') {
-        PizzaSize* s = new mediumPizza;
+        s = new mediumPizza;
         p = s->createPizza();
     } else if (c == 'L') {
-        PizzaSize* s = new largePizza;
+        s = new largePizza;
         p = s->createPizza();
     } else if (c == 'X') {
-        PizzaSize* s = new xLargePizza;
+        s = new xLargePizza;
         p = s->createPizza();
     } else {
-        PizzaSize* s = new partyPizza;
+        s = new partyPizza;
         p = s->createPizza();
     }
+
+    delete s;
 
     return p;
 }
@@ -233,4 +236,6 @@ void Controller::run() {
     } while (another(in, out));
 
     payBill(order);
+
+    for (auto& a : order) { delete a; }
 }

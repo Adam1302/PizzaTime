@@ -29,9 +29,6 @@ PlainPizza::PlainPizza(float price, string size) : Pizza{price, size + " Pizza:"
 float PlainPizza::getPrice() const {
     return price;
 }
-string PlainPizza::getDescription() const {
-    return description;
-}
 string PlainPizza::getRepresentation() const {
 	ostringstream oss;
 	oss << "+ " << description << "... $" << fixed << setprecision(2) << price << endl;
@@ -42,9 +39,6 @@ string PlainPizza::getRepresentation() const {
 Decorator::Decorator(float price, string description, Pizza* base) : Pizza{price, description}, base{base} {}
 float Decorator::getPrice() const { 
     return base->getPrice() + price;
-}
-string Decorator::getDescription() const {
-    return base->getDescription() + " (" + description + ")";
 }
 string Decorator::getRepresentation() const {
 	ostringstream oss;
