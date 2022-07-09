@@ -152,16 +152,15 @@ void Controller::payBill(Pizza* p) {
     float tipPercentage = 0;
     float price = p->getPrice();
 
+    out << p->getRepresentation() << endl;
 
-    out << "Your total price is: " << endl;
-    out << "\t$" << fixed << setprecision(2) << price << endl;
+
+    out << "Your total price is: $" << fixed << setprecision(2) << price << endl;
 
     out << endl << "Ontario Tax Rate is 13%: $" << fixed << setprecision(2) << price*0.13 << endl;
 	price *= 1.13;
 
 	out << "Total Price: $" << fixed << setprecision(2) << price << endl << endl;
-
-	
 
 	while (true) {
 			try {
@@ -192,17 +191,14 @@ void Controller::payBill(Pizza* p) {
 	out << "Total Price: $" << fixed << setprecision(2) << price << endl;
 
 	if (tipPercentage > 0) { out << "Thank you for the tip!" << endl; }
-    
 }
 
 void Controller::run() {
     out << "Hi! This is PizzaTime, a pizza pop-up shop celebrating the summer." << endl;
     // displayMenu();
     Pizza* p = NULL;
-    //do {
-        p = takePizzaOrder();
-    //} while(...);
-
+    
+    p = takePizzaOrder();
 
     payBill(p);
 }

@@ -1,3 +1,6 @@
+#include <iostream>
+#include <sstream>
+#include <iomanip>
 #include "pizza.h"
 
 using namespace std;
@@ -40,6 +43,11 @@ float PlainPizza::getPrice() const {
 string PlainPizza::getDescription() const {
     return description;
 }
+string PlainPizza::getRepresentation() const {
+	ostringstream oss;
+	oss << "+ " << description << "... $" << fixed << setprecision(2) << price << endl;
+	return oss.str();
+}
 
 
 Decorator::Decorator(float price, string description, Pizza* base) : Pizza{price, description}, base{base} {}
@@ -48,6 +56,14 @@ float Decorator::getPrice() const {
 }
 string Decorator::getDescription() const {
     return base->getDescription() + " (" + description + ")";
+}
+string Decorator::getRepresentation() const {
+	ostringstream oss;
+	ostringstream oss2;
+	oss << base->getRepresentation();
+	oss2 << "\t(+ " << description << ")";
+	oss << left << setw(24) << oss2.str() << fixed << setprecision(2) << "$" << price << endl;
+	return oss.str();
 }
 Decorator::~Decorator() { delete base; }
 
